@@ -1,5 +1,5 @@
 import telebot
-from telebot import types # для указание типов
+from telebot import types # для указания типов
 import random
 
 API_TOKEN = ''
@@ -27,14 +27,6 @@ def start_bot(message):
                      '"Кто хочет стать миллионером?"!', reply_markup=markup) # reply_markup=markup необходимо указать для отображения кнопок в боте!
     photoLogo.close() # закрываем photoLogo
 
-
-'''@bot.message_handler(content_types=['text'])
-def game_bot_menu(message):
-    if message.text == "Начать игру":
-        #bot.send_message(message.chat.id, 'Начинаем игру!')
-        game_bot_main(message)
-    elif message.text == "Правила игры":
-        bot.send_message(message.chat.id, 'Давайте прочитаем правила игры!')'''
 
 def QuestionsAboutTheGame(index): # вопросы к игре
     guestions = [
@@ -124,10 +116,6 @@ def answerOptionsButton(index):
 
 #@bot.message_handler(content_types=['text'])    
 def game_buttons_bot(message, guestion, buttons):
-    
-    '''guestion, index, QuestionLen = QuestionsAboutTheGame() # случайный выбор вопроса
-    answer = answerOptions(index) # правильный ответ
-    buttons = answerOptionsButton(index)  # выбор соответствующих названий для кнопок'''
 
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     button1 = types.KeyboardButton(buttons[0])
@@ -138,8 +126,6 @@ def game_buttons_bot(message, guestion, buttons):
     markup.add(button3, button4)
     
     bot.send_message(message.chat.id, guestion, reply_markup=markup)
-
-    #bot.register_next_step_handler(message, game_bot_main)
 
     return
 
@@ -589,11 +575,7 @@ def game_bot_main(message):
 def game_bot_menu(message):
     
     if message.text == "Начать игру":
-        #bot.send_message(message.chat.id, 'Начинаем игру!')
-        #game_bot(message)
-        #bot.register_next_step_handler(message, game_bot_main)
         game_bot_main(message)
-        #question1(message)
     elif message.text == "Правила игры":
         bot.send_message(message.chat.id, '''Игра Кто хочет стать миллионером? - это конкурс викторина,
 в котором участники должны правильно ответить на ряд вопросов с несколькими вариантами ответов, чтобы перейти на следующий уровень.
